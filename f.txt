@@ -1,0 +1,8 @@
+graph table {
+A -- A;
+B -- A;
+B -- A;
+C -- A;
+C -- B;
+D
+}
