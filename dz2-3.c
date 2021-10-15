@@ -1,4 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
@@ -6,8 +5,8 @@
 #include <stdbool.h>
 
 int n; 
-int** g;
-int* color;
+int** g;                                      //массив для матрицы смежности
+int* color;                                   //массив для поиска в глубину
 
 bool dfs(int OLDv, int v) {                   //функция для проверки на цикличность графа
     color[v] = 1;
@@ -26,7 +25,7 @@ return false;
 int main(void) {
     scanf("%d", &n);
 
-    color = (int*)malloc(n * sizeof(int));
+    color = (int*)malloc(n * sizeof(int));  //массив, который обозначает, в какой цвет окрашена вершина
     for (int i = 0; i < n; i++)
     color[i] = 0;                       
     
@@ -40,16 +39,16 @@ int main(void) {
     }
     }
 
-    bool b = 0;
+    bool b = 0;                             //цикла нет
     for (int i = 0; i < n; i++)
         if (dfs(-1, i)) {
-            b = 1;
+            b = 1;                          //нашли цикл 
             break;
         }
     if (b) printf("Cyclic\n");
     else printf("ACyclic\n");
 
-    FILE* file = fopen("f.txt", "w"); //открытие файла
+    FILE* file = fopen("f.txt", "w");       //открытие файла
     fprintf(file, "graph table {\n");
 
     for (int i = 0; i < n; i++) {
